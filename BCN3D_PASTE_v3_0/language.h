@@ -89,6 +89,8 @@
 	#define MSG_HYST_OFF "Disable"
 	#define MSG_HYST_MANUAL_X "Manual X"
 	#define MSG_HYST_MANUAL_Y "Manual Y"
+	//Rapduch
+	#define MSG_Z_SET_ZERO "Set Z = 0"
 	//----
 	#define MSG_BED "Bed"
 	#define MSG_FAN_SPEED "Fan speed"

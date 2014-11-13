@@ -71,6 +71,7 @@ static void lcd_control_motion_menu();
 static void lcd_hysteresis_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
+static void z_set_zero();
 //static void lcd_change_menu();
 //static void lcd_load();
 //static void lcd_unload();
@@ -427,8 +428,20 @@ static void lcd_prepare_menu()
     //
    // MENU_ITEM(submenu,MSG_CHANGE,lcd_change_menu);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
+	//Rapduch
+	MENU_ITEM(function,MSG_Z_SET_ZERO,z_set_zero);
     END_MENU();
 }
+
+//RAPDUCH
+static void z_set_zero()
+{
+	//Z is axis 2
+	current_position[2] = 0;
+	plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
+}
+
+
 /*
 static void lcd_unload()
 {
