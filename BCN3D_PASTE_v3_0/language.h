@@ -73,6 +73,7 @@
 	#define MSG_COOLDOWN "Cooldown"
         #define MSG_PREHEAT "Preheat"
 		#define MSG_PREHEAT_BED "Preheat Bed"
+		#define MSG_PREHEAT_EXTRUDER "Preheat Extruder"
         #define MSG_CHANGE "Change Filament"
         #define MSG_UNLOAD "Unload Filament"
         #define MSG_LOAD "Load Filament"

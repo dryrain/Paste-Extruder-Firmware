@@ -342,32 +342,36 @@ static void lcd_implementation_status_screen()
   // Borrar iconos sobrantes
   u8g.setColorIndex(0);	// white on black
   u8g.drawBox(25,7,45,13);
-  u8g.drawBox(0,0,40,40);
+  //u8g.drawBox(0,0,40,40);
   u8g.setColorIndex(1);	// black on white
   
   // Extruder 1
- //u8g.setFont(FONT_STATUSMENU);
+ u8g.setFont(FONT_STATUSMENU);
  u8g.setPrintPos(0,7);
  //u8g.drawBitmapP(10,0,LOGO_UPCBYTEWIDTH,LOGO_UPCHEIGHT,logo_upc); 
- u8g.print("RepRapBCN");
- u8g.setPrintPos(13,17);
- u8g.print("Paste");
- u8g.setPrintPos(3,27);
- u8g.print("Extruder");
+ 
+ 
+ //u8g.print("RepRapBCN");
+ //u8g.setPrintPos(13,17);
+ //u8g.print("Paste");
+ //u8g.setPrintPos(3,27);
  //u8g.print("Extruder");
+ 
+ 
+ u8g.print("Extruder");
  u8g.setPrintPos(24,14);
- //u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
- //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
+ lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
  u8g.setPrintPos(24,22);
- //u8g.print(itostr3(int(degHotend(0) + 0.5)));
- //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- //if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
-	//else
-		//{
-		 //u8g.setColorIndex(0);	// white on black
-		 //u8g.drawBox(13,17,2,2);
-		// u8g.setColorIndex(1);	// black on white
-		//}
+ u8g.print(itostr3(int(degHotend(0) + 0.5)));
+ lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
+	else
+		{
+		 u8g.setColorIndex(0);	// white on black
+		 u8g.drawBox(13,17,2,2);
+		 u8g.setColorIndex(1);	// black on white
+		}
 
   // Heatbed
  u8g.setFont(FONT_STATUSMENU);

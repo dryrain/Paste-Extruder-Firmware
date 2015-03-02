@@ -377,6 +377,13 @@ void lcd_preheat_bed()
 	setWatch(); //sanity check
 }
 
+void lcd_preheat_extruder()
+{
+	setTargetHotend0(220);
+	lcd_return_to_status();
+	setWatch(); //sanity check
+}
+
 static void lcd_cooldown()
 {
 	//Rapduch
@@ -420,6 +427,7 @@ static void lcd_prepare_menu()
     MENU_ITEM(gcode, MSG_DISABLE_STEPPERS, PSTR("M84"));
     MENU_ITEM(gcode, MSG_AUTO_HOME, PSTR("G28"));
 	MENU_ITEM(function, MSG_PREHEAT_BED, lcd_preheat_bed);
+	MENU_ITEM(function,MSG_PREHEAT_EXTRUDER,lcd_preheat_extruder);
     //MENU_ITEM(gcode, MSG_SET_ORIGIN, PSTR("G92 X0 Y0 Z0"));
 	//Rapduch
     //MENU_ITEM(submenu, MSG_PREHEAT, lcd_preheat_menu);
@@ -658,7 +666,7 @@ static void lcd_control_temperature_menu()
     START_MENU();
     MENU_ITEM(back, MSG_CONTROL, lcd_control_menu);
 	//Rapduch
-    //MENU_ITEM_EDIT(int3, MSG_NOZZLE, &target_temperature[0], 0, HEATER_0_MAXTEMP - 15);
+    MENU_ITEM_EDIT(int3, MSG_NOZZLE, &target_temperature[0], 0, HEATER_0_MAXTEMP - 15);
 /*#if TEMP_SENSOR_1 != 0
     MENU_ITEM_EDIT(int3, MSG_NOZZLE1, &target_temperature[1], 0, HEATER_1_MAXTEMP - 15);
 *#endif
