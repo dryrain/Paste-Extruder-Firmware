@@ -240,7 +240,7 @@
 
 //Rapduch
 // Uncomment to enable disconnecting the hotend without mintemp error.
-#define DISABLE_HOTEND_MINTEMP_ERROR
+//#define DISABLE_HOTEND_MINTEMP_ERROR
 
 
 //this prevents dangerous Extruder moves, i.e. if the temperature is under the limit
