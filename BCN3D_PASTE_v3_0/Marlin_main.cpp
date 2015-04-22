@@ -50,6 +50,8 @@
 
 #define VERSION_STRING  "1.0.0"
 
+bool extruder_duplicated=false;
+
 // look here for descriptions of gcodes: http://linuxcnc.org/handbook/gcode/g-code.html
 // http://objects.reprap.org/wiki/Mendel_User_Manual:_RepRapGCodes
 
@@ -2176,6 +2178,9 @@ void prepare_move()
                      active_extruder);
   }
 #else
+
+	float e_moved = destination[E_AXIS]-current_position[E_AXIS];
+
   // Do not use feedmultiply for E or Z only moves
   if( (current_position[X_AXIS] == destination [X_AXIS]) && (current_position[Y_AXIS] == destination [Y_AXIS])) {
       plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate/60, active_extruder);
@@ -2184,9 +2189,22 @@ void prepare_move()
     plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate*feedmultiply/60/100.0, active_extruder);
   }
 #endif
+
   for(int8_t i=0; i < NUM_AXIS; i++) {
     current_position[i] = destination[i];
   }
+  
+  //if (extruder_duplicated && e_moved != 0 )
+  //{
+	 //SERIAL_ECHO("we are in");
+	 //SERIAL_ECHOLN(e_moved);
+	//current_position[E_AXIS]=destination[E_AXIS]-e_moved;
+	//plan_set_e_position(current_position[E_AXIS]);
+	//active_extruder=1;
+	//plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate*feedmultiply/60/100.0, active_extruder);
+	//current_position[E_AXIS]=destination[E_AXIS];
+	//active_extruder=0;  
+  //}
 }
 
 void prepare_arc_move(char isclockwise) {

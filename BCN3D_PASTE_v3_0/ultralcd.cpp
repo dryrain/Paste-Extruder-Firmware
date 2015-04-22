@@ -72,6 +72,7 @@ static void lcd_hysteresis_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
 static void z_set_zero();
+static void extruder_duplication();
 //static void lcd_change_menu();
 //static void lcd_load();
 //static void lcd_unload();
@@ -429,6 +430,7 @@ static void lcd_prepare_menu()
    // MENU_ITEM(submenu,MSG_CHANGE,lcd_change_menu);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
 	//Rapduch
+	MENU_ITEM(function,"Extruder DUPLICATION",extruder_duplication);
 	MENU_ITEM(function,MSG_Z_SET_ZERO,z_set_zero);
     END_MENU();
 }
@@ -439,6 +441,18 @@ static void z_set_zero()
 	//Z is axis 2
 	current_position[2] = 0;
 	plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
+}
+
+
+
+static void extruder_duplication()
+{	
+	if (extruder_duplicated)
+	{
+		extruder_duplicated=false;	
+	}else{
+		extruder_duplicated=true;	
+	}	
 }
 
 
@@ -590,6 +604,29 @@ static void lcd_move_e()
     }
 }
 
+static void lcd_move_e2()
+{
+	if (encoderPosition != 0)
+	{
+		current_position[E_AXIS] += float((int)encoderPosition) * move_menu_scale;
+		encoderPosition = 0;
+		active_extruder=1;
+		plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 3, active_extruder);
+		active_extruder=0;
+		lcdDrawUpdate = 1;
+	}
+	if (lcdDrawUpdate)
+	{
+		lcd_implementation_drawedit(PSTR("Extruder"), ftostr31(current_position[E_AXIS]));
+	}
+	if (LCD_CLICKED)
+	{
+		lcd_quick_feedback();
+		currentMenu = lcd_move_menu_axis;
+		encoderPosition = 0;
+	}
+}
+
 static void lcd_move_menu_axis()
 {
     START_MENU();
@@ -599,7 +636,8 @@ static void lcd_move_menu_axis()
     if (move_menu_scale < 10.0)
     {
         MENU_ITEM(submenu, "Move Z", lcd_move_z);
-        MENU_ITEM(submenu, "Extruder", lcd_move_e);
+        MENU_ITEM(submenu, "Extruder Left", lcd_move_e);
+		MENU_ITEM(submenu, "Extruder Right", lcd_move_e2);
     }
     END_MENU();
 }

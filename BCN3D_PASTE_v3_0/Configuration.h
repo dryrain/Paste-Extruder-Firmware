@@ -325,7 +325,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 // Travel limits after homing
 #define X_MAX_POS 110
 #define X_MIN_POS 0
-#define Y_MAX_POS 210
+#define Y_MAX_POS 195
 #define Y_MIN_POS 0
 //Rapduch
 //#define Z_MAX_POS 200

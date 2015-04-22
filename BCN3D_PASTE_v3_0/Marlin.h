@@ -211,4 +211,6 @@ extern unsigned long stoptime;
 // Handling multiple extruders pins
 extern uint8_t active_extruder;
 
+extern bool extruder_duplicated;
+
 #endif
