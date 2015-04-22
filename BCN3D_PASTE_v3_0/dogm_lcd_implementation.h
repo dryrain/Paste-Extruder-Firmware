@@ -116,7 +116,7 @@ static void lcd_implementation_init()
 			u8g.drawBitmapP(0,0,START_BMPBYTEWIDTH,START_BMPHEIGHT,start_bmp);
 			// Welcome message
 			u8g.setFont(u8g_font_6x10_marlin);
-			u8g.drawStr(62,10,"Paste");
+			u8g.drawStr(62,10,"DUAL Paste");
 			u8g.drawStr(62,20,"Extruder");
             u8g.setFont(u8g_font_5x8);
             u8g.drawStr(62,35,"by RepRapBCN");
@@ -124,7 +124,7 @@ static void lcd_implementation_init()
 			
 			//Rapduch
 			u8g.setPrintPos(83,51);
-			u8g.print("v3.0");
+			u8g.print("");
             /*
 			
 			
@@ -218,131 +218,132 @@ static void lcd_implementation_status_screen()
  
 #if EXTRUDERS > 2
 
-// Extruder 1
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(6,6);
- u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(6,27);
- u8g.print(itostr3(int(degHotend(0) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(13,17,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
- 
- // Extruder 2
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(31,6);
- u8g.print(itostr3(int(degTargetHotend(1) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(31,27);
- u8g.print(itostr3(int(degHotend(1) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingHotend(1)) u8g.drawBox(38,17,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(38,17,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
- 
- // Extruder 3
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(55,6);
- u8g.print(itostr3(int(degTargetHotend(2) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(55,27);
- u8g.print(itostr3(int(degHotend(2) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingHotend(2)) u8g.drawBox(62,17,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(62,17,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
-// Heatbed
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(81,6);
- u8g.print(itostr3(int(degTargetBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(81,27);
- u8g.print(itostr3(int(degBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(88,18,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
+//// Extruder 1
+ //u8g.setFont(FONT_STATUSMENU);
+ //u8g.setPrintPos(6,6);
+ //u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //u8g.setPrintPos(6,27);
+ //u8g.print(itostr3(int(degHotend(0) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
+	//else
+		//{
+		 //u8g.setColorIndex(0);	// white on black
+		 //u8g.drawBox(13,17,2,2);
+		 //u8g.setColorIndex(1);	// black on white
+		//}
+ //
+ //// Extruder 2
+ //u8g.setFont(FONT_STATUSMENU);
+ //u8g.setPrintPos(31,6);
+ //u8g.print(itostr3(int(degTargetHotend(1) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //u8g.setPrintPos(31,27);
+ //u8g.print(itostr3(int(degHotend(1) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //if (!isHeatingHotend(1)) u8g.drawBox(38,17,2,2);
+	//else
+		//{
+		 //u8g.setColorIndex(0);	// white on black
+		 //u8g.drawBox(38,17,2,2);
+		 //u8g.setColorIndex(1);	// black on white
+		//}
+ //
+ //// Extruder 3
+ //u8g.setFont(FONT_STATUSMENU);
+ //u8g.setPrintPos(55,6);
+ //u8g.print(itostr3(int(degTargetHotend(2) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //u8g.setPrintPos(55,27);
+ //u8g.print(itostr3(int(degHotend(2) + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //if (!isHeatingHotend(2)) u8g.drawBox(62,17,2,2);
+	//else
+		//{
+		 //u8g.setColorIndex(0);	// white on black
+		 //u8g.drawBox(62,17,2,2);
+		 //u8g.setColorIndex(1);	// black on white
+		//}
+//// Heatbed
+ //u8g.setFont(FONT_STATUSMENU);
+ //u8g.setPrintPos(81,6);
+ //u8g.print(itostr3(int(degTargetBed() + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //u8g.setPrintPos(81,27);
+ //u8g.print(itostr3(int(degBed() + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
+	//else
+		//{
+		 //u8g.setColorIndex(0);	// white on black
+		 //u8g.drawBox(88,18,2,2);
+		 //u8g.setColorIndex(1);	// black on white
+		//}
 
- #else
- 
-#if EXTRUDERS > 1
+ //#else
+ //
+//#if EXTRUDERS > 1
 
-// Borrar iconos sobrantes
-  u8g.setColorIndex(0);	// white on black
-  u8g.drawBox(45,7,25,13);
-  u8g.setColorIndex(1);	// black on white
-
-// Extruder 1
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(6,6);
- u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(6,27);
- u8g.print(itostr3(int(degHotend(0) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(13,17,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
- 
- // Extruder 2
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(31,6);
- u8g.print(itostr3(int(degTargetHotend(1) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(31,27);
- u8g.print(itostr3(int(degHotend(1) + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingHotend(1)) u8g.drawBox(38,17,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(38,17,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
-
-// Heatbed
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(81,6);
- u8g.print(itostr3(int(degTargetBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(81,27);
- u8g.print(itostr3(int(degBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(88,18,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
+ ////Borrar iconos sobrantes
+  ////u8g.setColorIndex(0);	// white on black
+  ////u8g.drawBox(45,7,25,13);
+  ////u8g.setColorIndex(1);	// black on white
+////
+ ////Extruder 1
+ ////u8g.setFont(FONT_STATUSMENU);
+ ////u8g.setPrintPos(6,6);
+ ////u8g.print(itostr3(int(degTargetHotend(0) + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////u8g.setPrintPos(6,27);
+ ////u8g.print(itostr3(int(degHotend(0) + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////if (!isHeatingHotend(0)) u8g.drawBox(13,17,2,2);
+	////else
+		////{
+		 ////u8g.setColorIndex(0);	// white on black
+		 ////u8g.drawBox(13,17,2,2);
+		 ////u8g.setColorIndex(1);	// black on white
+		////}
+ ////
+  ////Extruder 2
+ ////u8g.setFont(FONT_STATUSMENU);
+ ////u8g.setPrintPos(31,6);
+ ////u8g.print(itostr3(int(degTargetHotend(1) + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////u8g.setPrintPos(31,27);
+ ////u8g.print(itostr3(int(degHotend(1) + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////if (!isHeatingHotend(1)) u8g.drawBox(38,17,2,2);
+	////else
+		////{
+		 ////u8g.setColorIndex(0);	// white on black
+		 ////u8g.drawBox(38,17,2,2);
+		 ////u8g.setColorIndex(1);	// black on white
+		////}
+////
+ ////Heatbed
+ ////u8g.setFont(FONT_STATUSMENU);
+ ////u8g.setPrintPos(81,6);
+ ////u8g.print(itostr3(int(degTargetBed() + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////u8g.setPrintPos(81,27);
+ ////u8g.print(itostr3(int(degBed() + 0.5)));
+ ////lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ ////if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
+	////else
+		////{
+		 ////u8g.setColorIndex(0);	// white on black
+		 ////u8g.drawBox(88,18,2,2);
+		 ////u8g.setColorIndex(1);	// black on white
+		////}
 
 #else
   // Borrar iconos sobrantes
   u8g.setColorIndex(0);	// white on black
   u8g.drawBox(25,7,45,13);
   u8g.drawBox(0,0,40,40);
+  u8g.drawBox(60,0,100,40);
   u8g.setColorIndex(1);	// black on white
   
   // Extruder 1
@@ -369,39 +370,42 @@ static void lcd_implementation_status_screen()
 		// u8g.setColorIndex(1);	// black on white
 		//}
 
-  // Heatbed
- u8g.setFont(FONT_STATUSMENU);
-  u8g.setPrintPos(60,6);
- u8g.print("Hot Bed");
- u8g.setPrintPos(55,14);
- u8g.print(itostr3(int(degTargetBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- u8g.setPrintPos(55,22);
- u8g.print(itostr3(int(degBed() + 0.5)));
- lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
- if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
-	else
-		{
-		 u8g.setColorIndex(0);	// white on black
-		 u8g.drawBox(88,18,2,2);
-		 u8g.setColorIndex(1);	// black on white
-		}
+  //// Heatbed
+ //u8g.setFont(FONT_STATUSMENU);
+  //u8g.setPrintPos(60,6);
+ //u8g.print("Hot Bed");
+ //u8g.setPrintPos(55,14);
+ //u8g.print(itostr3(int(degTargetBed() + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //u8g.setPrintPos(55,22);
+ //u8g.print(itostr3(int(degBed() + 0.5)));
+ //lcd_printPGM(PSTR(LCD_STR_DEGREE " "));
+ //if (!isHeatingBed()) u8g.drawBox(88,18,2,2);
+	//else
+		//{
+		 //u8g.setColorIndex(0);	// white on black
+		 //u8g.drawBox(88,18,2,2);
+		 //u8g.setColorIndex(1);	// black on white
+		//}
+
+
+
 
   // Barra divisoria
  u8g.drawBox(56,0,3,27);
 
  #endif
- #endif
+ //#endif
  
  // Fan
- u8g.setFont(FONT_STATUSMENU);
- u8g.setPrintPos(104,27);
- #if defined(FAN_PIN) && FAN_PIN > -1
- u8g.print(itostr3(int((fanSpeed*100)/256 + 1)));
- u8g.print("%");
- #else
- u8g.print("---");
- #endif
+ //u8g.setFont(FONT_STATUSMENU);
+ //u8g.setPrintPos(104,27);
+ //#if defined(FAN_PIN) && FAN_PIN > -1
+ //u8g.print(itostr3(int((fanSpeed*100)/256 + 1)));
+ //u8g.print("%");
+ //#else
+ //u8g.print("---");
+ //#endif
  
  
  // Barra blanca
